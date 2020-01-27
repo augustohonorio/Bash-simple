@@ -1,0 +1,59 @@
+#!/bin/bash
+
+
+#Automacao simples
+#Desenvolvedor:Augusto Honório
+#Contatos
+#E-mail:augusto.honorio@hotmail.com 
+#Telegram:@Augustohonorio
+#Forum:https://caveiratech.com/forum/profile/Alobus
+#
+#v0.1
+#
+#
+
+
+opcoes=("Status de memoria" "Memoria total" "Limpeza basica" "Atualizacao de sistema" "Desligar Maquina" "Medidor de FPS" 
+"Ajuda" "sair")
+
+select nome in "${opcoes[@]}"
+do
+	case $nome in 
+		"Status de memoria")
+			free -m
+			;;
+		"Memoria total")
+			sudo grep MemTotal /proc/meminfo
+			;;
+		"Limpeza basica")
+			sudo apt-get autoremove  -y
+			sudo apt-get autoclean -y
+			sudo apt-get clean -y
+			;;
+		"Atualizacao de sistema")
+			sudo apt-get update -y
+			sudo apt-get upgrade -y
+			;;
+		"Desligar Maquina")
+			sudo shutdown -t 0
+			;;
+		"Medidor de FPS")
+			glxgears -fullscreen
+			;;
+		"Ajuda")
+			echo "###########################################"
+			echo -e "1-Fornece status de Memoria
+			\n2-Memoria total alocada fisicamente
+			\n3-Limpeza basica do S.O. (requer autenticar) 
+			\n4-Atualizacao do S.O.(requer autenticar)
+			\n5-Desliga a máquina (imediatamente apos dar enter) 
+			\n6-medidor de FPS(ira abrir uma janela com engrenagens,basta voltar ao terminal e verá ao lado direito os FPS da sua maquina)"
+			echo "###########################################"
+			;;
+		"sair")
+			echo "voce optou por sair,ate a proxima!"
+			break
+			;;
+		*) echo "Opção invalida";;
+	esac
+done
